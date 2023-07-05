@@ -1,11 +1,11 @@
-package com.codependent.springadts.adapter.in.web;
+package com.codependent.hexapp.adapter.in.web;
 
-import com.codependent.springadts.application.domain.error.DepartmentBlacklistedError;
-import com.codependent.springadts.application.domain.error.DepartmentExistsError;
-import com.codependent.springadts.application.domain.error.DomainError;
-import com.codependent.springadts.application.domain.error.ValidationErrors;
-import com.codependent.springadts.application.domain.exception.DomainErrorException;
-import com.codependent.springadts.application.domain.exception.ValidationErrorsException;
+import com.codependent.hexapp.application.domain.error.DepartmentBlacklistedError;
+import com.codependent.hexapp.application.domain.error.DepartmentExistsError;
+import com.codependent.hexapp.application.domain.error.DomainError;
+import com.codependent.hexapp.application.domain.error.ValidationErrors;
+import com.codependent.hexapp.application.domain.exception.DomainErrorException;
+import com.codependent.hexapp.application.domain.exception.ValidationErrorsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

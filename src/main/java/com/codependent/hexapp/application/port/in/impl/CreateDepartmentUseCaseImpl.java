@@ -1,8 +1,8 @@
-package com.codependent.springadts.application.port.in.impl;
+package com.codependent.hexapp.application.port.in.impl;
 
-import com.codependent.springadts.application.domain.Department;
-import com.codependent.springadts.application.port.in.CreateDepartmentUseCase;
-import com.codependent.springadts.application.port.in.dto.CreateDepartmentCommand;
+import com.codependent.hexapp.application.domain.Department;
+import com.codependent.hexapp.application.port.in.CreateDepartmentUseCase;
+import com.codependent.hexapp.application.port.in.dto.CreateDepartmentCommand;
 import org.springframework.stereotype.Component;
 
 @Component

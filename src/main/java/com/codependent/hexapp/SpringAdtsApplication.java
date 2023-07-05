@@ -1,4 +1,4 @@
-package com.codependent.springadts;
+package com.codependent.hexapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

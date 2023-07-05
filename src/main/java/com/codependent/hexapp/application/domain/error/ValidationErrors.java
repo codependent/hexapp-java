@@ -1,4 +1,4 @@
-package com.codependent.springadts.application.domain.error;
+package com.codependent.hexapp.application.domain.error;
 
 import java.util.ArrayList;
 import java.util.List;

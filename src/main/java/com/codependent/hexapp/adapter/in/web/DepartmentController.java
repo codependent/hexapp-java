@@ -1,8 +1,8 @@
-package com.codependent.springadts.adapter.in.web;
+package com.codependent.hexapp.adapter.in.web;
 
-import com.codependent.springadts.application.domain.Department;
-import com.codependent.springadts.application.port.in.CreateDepartmentUseCase;
-import com.codependent.springadts.application.port.in.dto.CreateDepartmentCommand;
+import com.codependent.hexapp.application.domain.Department;
+import com.codependent.hexapp.application.port.in.CreateDepartmentUseCase;
+import com.codependent.hexapp.application.port.in.dto.CreateDepartmentCommand;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

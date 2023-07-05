@@ -1,7 +1,7 @@
-package com.codependent.springadts.application.domain.exception;
+package com.codependent.hexapp.application.domain.exception;
 
 
-import com.codependent.springadts.application.domain.error.ValidationErrors;
+import com.codependent.hexapp.application.domain.error.ValidationErrors;
 
 public class ValidationErrorsException extends RuntimeException {
 

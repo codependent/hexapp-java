@@ -1,9 +1,9 @@
-package com.codependent.springadts.application.domain;
+package com.codependent.hexapp.application.domain;
 
-import com.codependent.springadts.application.domain.error.EmptyField;
-import com.codependent.springadts.application.domain.error.InvalidField;
-import com.codependent.springadts.application.domain.error.ValidationErrors;
-import com.codependent.springadts.application.domain.exception.ValidationErrorsException;
+import com.codependent.hexapp.application.domain.error.EmptyField;
+import com.codependent.hexapp.application.domain.error.InvalidField;
+import com.codependent.hexapp.application.domain.error.ValidationErrors;
+import com.codependent.hexapp.application.domain.exception.ValidationErrorsException;
 import lombok.With;
 import org.apache.commons.lang3.StringUtils;
 

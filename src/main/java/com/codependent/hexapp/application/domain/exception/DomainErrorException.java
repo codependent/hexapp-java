@@ -1,7 +1,7 @@
-package com.codependent.springadts.application.domain.exception;
+package com.codependent.hexapp.application.domain.exception;
 
 
-import com.codependent.springadts.application.domain.error.DomainError;
+import com.codependent.hexapp.application.domain.error.DomainError;
 
 public class DomainErrorException extends RuntimeException {
 

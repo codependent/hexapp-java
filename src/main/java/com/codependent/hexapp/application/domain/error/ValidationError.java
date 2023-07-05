@@ -1,4 +1,4 @@
-package com.codependent.springadts.application.domain.error;
+package com.codependent.hexapp.application.domain.error;
 
 public abstract sealed class ValidationError implements ApplicationError permits EmptyField, InvalidField {
 

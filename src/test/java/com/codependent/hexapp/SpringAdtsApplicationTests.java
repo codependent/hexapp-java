@@ -1,4 +1,4 @@
-package com.codependent.springadts;
+package com.codependent.hexapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
