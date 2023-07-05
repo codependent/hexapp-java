@@ -3,13 +3,22 @@ package com.codependent.hexapp.application.domain;
 import com.codependent.hexapp.application.domain.error.EmptyField;
 import com.codependent.hexapp.application.domain.error.InvalidField;
 import com.codependent.hexapp.application.domain.error.ValidationErrors;
-import com.codependent.hexapp.application.domain.exception.ValidationErrorsException;
+import io.vavr.control.Either;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.With;
 import org.apache.commons.lang3.StringUtils;
 
-public @With record Department(int id, String name) {
+import static lombok.AccessLevel.PRIVATE;
+
+@RequiredArgsConstructor(access = PRIVATE)
+@Getter
+public @With class Department {
+
+    private final int id;
+    private final String name;
     
-    public Department {
+    public static Either<ValidationErrors, Department> create(int id, String name) {
         ValidationErrors validationErrors = new ValidationErrors();
         if (id <= 0) {
             validationErrors.add(new InvalidField("department", "id", "invalid"));
@@ -17,8 +26,9 @@ public @With record Department(int id, String name) {
         if(StringUtils.isBlank(name)) {
             validationErrors.add(new EmptyField("department", "name", "empty"));
         }
-        if(!validationErrors.getErrors().isEmpty()) {
-            throw new ValidationErrorsException(validationErrors);
+        if(validationErrors.getErrors().isEmpty()) {
+            return Either.right(new Department(id, name));
         }
+        return Either.left(validationErrors);
     }
 }

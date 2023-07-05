@@ -1,9 +1,11 @@
 package com.codependent.hexapp.application.port.out;
 
 import com.codependent.hexapp.application.domain.Department;
+import com.codependent.hexapp.application.domain.error.ApplicationError;
+import io.vavr.control.Either;
 
 public interface CreateDepartmentDrivenPort {
     
-    Department create(Department department);
+    Either<ApplicationError, Department> create(Department department);
     
 }

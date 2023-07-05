@@ -20,12 +20,12 @@ public class DepartmentRepositoryInMemoryImpl implements DepartmentRepository{
     @Override
     public Optional<Department> get(String name) {
         return departmentMap.values().stream()
-                .filter(department -> department.name().equalsIgnoreCase(name)).findFirst();
+                .filter(department -> department.getName().equalsIgnoreCase(name)).findFirst();
     }
 
     @Override
     public Department save(Department department) {
-        departmentMap.put(department.id(), department);
+        departmentMap.put(department.getId(), department);
         return department;
     }
 }
