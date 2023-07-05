@@ -11,7 +11,8 @@ public class DepartmentController {
 
     @PostMapping
     Department create() {
-        return new Department(-1, null);
+        Department department = new Department(1, "My Department");
+        return department.withId(0);
     }
 
 }

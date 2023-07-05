@@ -4,8 +4,9 @@ import com.codependent.springadts.application.domain.error.EmptyField;
 import com.codependent.springadts.application.domain.error.InvalidField;
 import com.codependent.springadts.application.domain.error.ValidationErrors;
 import com.codependent.springadts.application.domain.exception.ValidationErrorsException;
+import lombok.With;
 
-public record Department(int id, String name) {
+public @With record Department(int id, String name) {
     
     public Department {
         ValidationErrors validationErrors = new ValidationErrors();
