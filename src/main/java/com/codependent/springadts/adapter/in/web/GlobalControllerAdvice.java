@@ -1,4 +1,4 @@
-package com.codependent.springadts.web;
+package com.codependent.springadts.adapter.in.web;
 
 import com.codependent.springadts.application.domain.error.DepartmentBlacklistedError;
 import com.codependent.springadts.application.domain.error.DepartmentExistsError;
