@@ -10,10 +10,6 @@ public final class ValidationErrors implements ApplicationError {
     public void add(ValidationError error) {
         errors.add(error);
     }
-    
-    public boolean isEmpty() {
-        return errors.isEmpty();
-    }
 
     public List<ValidationError> getErrors() {
         return List.of(errors.toArray(new ValidationError[0]));
