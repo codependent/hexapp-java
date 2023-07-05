@@ -10,7 +10,7 @@ public @With record Department(int id, String name) {
     
     public Department {
         ValidationErrors validationErrors = new ValidationErrors();
-        if (id < 0) {
+        if (id <= 0) {
             validationErrors.add(new InvalidField("department", "id", "invalid"));
         }
         if(name == null) {
