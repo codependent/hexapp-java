@@ -7,5 +7,8 @@ public abstract sealed class ValidationError implements ApplicationError permits
     protected ValidationError(String code) {
         this.code = code;
     }
-    
+
+    public String getCode() {
+        return code;
+    }
 }
