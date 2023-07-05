@@ -19,7 +19,6 @@ public class GlobalControllerAdvice {
     }
 
     @ExceptionHandler(DomainErrorException.class)
-    @ResponseStatus(BAD_REQUEST)
     ResponseEntity<DomainError> domainException(DomainErrorException domainErrorException) {
         DomainError error = domainErrorException.getError();
         return switch (error) {
