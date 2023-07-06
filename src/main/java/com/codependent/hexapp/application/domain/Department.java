@@ -1,5 +1,6 @@
 package com.codependent.hexapp.application.domain;
 
+import com.codependent.hexapp.application.domain.error.ApplicationError;
 import com.codependent.hexapp.application.domain.error.EmptyField;
 import com.codependent.hexapp.application.domain.error.InvalidField;
 import com.codependent.hexapp.application.domain.error.ValidationErrors;
@@ -18,7 +19,7 @@ public @With class Department {
     private final int id;
     private final String name;
     
-    public static Either<ValidationErrors, Department> create(int id, String name) {
+    public static Either<ApplicationError, Department> create(int id, String name) {
         ValidationErrors validationErrors = new ValidationErrors();
         if (id <= 0) {
             validationErrors.add(new InvalidField("department", "id", "invalid"));

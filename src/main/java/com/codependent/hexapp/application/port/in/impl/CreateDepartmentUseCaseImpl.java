@@ -25,17 +25,14 @@ public class CreateDepartmentUseCaseImpl implements CreateDepartmentUseCase {
 
     @Override
     public Either<? extends ApplicationError, Department> createDepartment(CreateDepartmentCommand command) {
-        Either<? extends ApplicationError, Department> department = Department.create(command.id(), command.name());
-        Either<? extends ApplicationError, Department> createdDepartment = department.flatMap((Department dep) -> {
+        Either<ApplicationError, Department> department = Department.create(command.id(), command.name());
+        return department.flatMap((Department dep) -> {
             Optional<Department> existingDepartment = getDepartmentDrivenPort.getByName(command.name());
             if (existingDepartment.isPresent()) {
-                Either<? extends ApplicationError, Department> left = Either.left(new DepartmentExistsError());
-                return left;
+                return Either.left(new DepartmentExistsError());
             } else {
-                Either<? extends ApplicationError, Department> right = createDepartmentDrivenPort.create(dep);
-                return right;
+                return createDepartmentDrivenPort.create(dep);
             }
         });
-        return createdDepartment;
     }
 }
