@@ -34,13 +34,12 @@ class CreateDepartmentUseCaseImplTests {
 
         DepartmentRepositoryInMemoryImpl departmentRepositoryInMemory = new DepartmentRepositoryInMemoryImpl();
         departmentRepositoryInMemory.save(new Department(1, "name"));
+        departmentRepositoryInMemory.save(new Department(2, "name2"));
         final GetDepartmentDrivenPort getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(departmentRepositoryInMemory);
         final CreateDepartmentDrivenPort createDepartmentDrivenPort = department -> department;
         CreateDepartmentUseCase createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort);
 
-        DomainErrorException exception = assertThrows(DomainErrorException.class, () -> {
-            createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(1, "name"));
-        });
+        DomainErrorException exception = assertThrows(DomainErrorException.class, () -> createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(2, "name2")));
         
         assertEquals(DepartmentExistsError.class, exception.getError().getClass());
         assertEquals("department.exists", exception.getError().getCode());

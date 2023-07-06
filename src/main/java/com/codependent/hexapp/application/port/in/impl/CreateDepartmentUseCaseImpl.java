@@ -27,7 +27,7 @@ public class CreateDepartmentUseCaseImpl implements CreateDepartmentUseCase {
     public Department createDepartment(CreateDepartmentCommand command) {
         val department = new Department(command.id(), command.name());
         Optional<Department> existingDepartment = getDepartmentDrivenPort.getByName(command.name());
-        if(existingDepartment.isPresent()) {
+        if(existingDepartment.isPresent() && existingDepartment.get().name().equalsIgnoreCase(command.name())) {
             throw new DomainErrorException(new DepartmentExistsError());
         } else {
             return createDepartmentDrivenPort.create(department);
