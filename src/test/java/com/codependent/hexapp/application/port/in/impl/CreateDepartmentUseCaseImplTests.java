@@ -9,7 +9,7 @@ import com.codependent.hexapp.application.domain.exception.ValidationErrorsExcep
 import com.codependent.hexapp.application.port.in.CreateDepartmentUseCase;
 import com.codependent.hexapp.application.port.in.dto.CreateDepartmentCommand;
 import com.codependent.hexapp.application.port.out.CreateDepartmentDrivenPort;
-import com.codependent.hexapp.application.port.out.GetDepartmentDrivenPort;
+import lombok.val;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,11 +19,11 @@ class CreateDepartmentUseCaseImplTests {
     @Test
     void shouldCreateDepartment() {
 
-        final GetDepartmentDrivenPort getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(new DepartmentRepositoryInMemoryImpl());
+        val getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(new DepartmentRepositoryInMemoryImpl());
         final CreateDepartmentDrivenPort createDepartmentDrivenPort = department -> department;
         CreateDepartmentUseCase createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort);
 
-        Department department = createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(1, "name"));
+        val department = createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(1, "name"));
 
         assertEquals(new Department(1, "name"), department);
 
@@ -32,14 +32,14 @@ class CreateDepartmentUseCaseImplTests {
     @Test
     void shouldNotCreateExistingDepartment() {
 
-        DepartmentRepositoryInMemoryImpl departmentRepositoryInMemory = new DepartmentRepositoryInMemoryImpl();
+        val departmentRepositoryInMemory = new DepartmentRepositoryInMemoryImpl();
         departmentRepositoryInMemory.save(new Department(1, "name"));
         departmentRepositoryInMemory.save(new Department(2, "name2"));
-        final GetDepartmentDrivenPort getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(departmentRepositoryInMemory);
+        val getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(departmentRepositoryInMemory);
         final CreateDepartmentDrivenPort createDepartmentDrivenPort = department -> department;
-        CreateDepartmentUseCase createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort);
+        val createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort);
 
-        DomainErrorException exception = assertThrows(DomainErrorException.class, () -> createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(2, "name2")));
+        val exception = assertThrows(DomainErrorException.class, () -> createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(2, "name2")));
         
         assertEquals(DepartmentExistsError.class, exception.getError().getClass());
         assertEquals("department.exists", exception.getError().getCode());
@@ -48,11 +48,11 @@ class CreateDepartmentUseCaseImplTests {
     @Test
     void shouldNotCreateDepartmentWithValidationErrors() {
 
-        final GetDepartmentDrivenPort getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(new DepartmentRepositoryInMemoryImpl());
+        val getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(new DepartmentRepositoryInMemoryImpl());
         final CreateDepartmentDrivenPort createDepartmentDrivenPort = department -> department;
-        CreateDepartmentUseCase createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort);
+        val createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort);
 
-        ValidationErrorsException exception = assertThrows(ValidationErrorsException.class, () -> 
+        val exception = assertThrows(ValidationErrorsException.class, () -> 
                 createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(0, "")));
         
         assertEquals(2, exception.getValidationErrors().getErrors().size());

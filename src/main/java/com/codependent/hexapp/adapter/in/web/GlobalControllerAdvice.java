@@ -3,6 +3,7 @@ package com.codependent.hexapp.adapter.in.web;
 import com.codependent.hexapp.application.domain.error.*;
 import com.codependent.hexapp.application.domain.exception.DomainErrorException;
 import com.codependent.hexapp.application.domain.exception.ValidationErrorsException;
+import lombok.val;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,7 +24,7 @@ public class GlobalControllerAdvice {
 
     @ExceptionHandler(DomainErrorException.class)
     public ResponseEntity<ErrorsDto> domainException(DomainErrorException domainErrorException) {
-        DomainError error = domainErrorException.getError();
+        val error = domainErrorException.getError();
         return switch (error) {
             case DepartmentExistsError departmentExistsError -> buildErrorResponse(CONFLICT, error);
             case DepartmentBlacklistedError departmentBlacklistedError -> buildErrorResponse(FORBIDDEN, error);

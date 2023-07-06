@@ -10,6 +10,7 @@ import com.codependent.hexapp.application.domain.exception.ValidationErrorsExcep
 import com.codependent.hexapp.application.port.in.CreateDepartmentUseCase;
 import com.codependent.hexapp.application.port.in.dto.CreateDepartmentCommand;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -74,7 +75,7 @@ class DepartmentControllerTests {
     @Test
     void shouldFailCreatingExistingDepartment() throws Exception {
         
-        CreateDepartmentCommand createDepartmentCommand = new CreateDepartmentCommand(0, "");
+        val createDepartmentCommand = new CreateDepartmentCommand(0, "");
         when(createDepartmentUseCase.createDepartment(createDepartmentCommand))
                 .thenThrow(new DomainErrorException(new DepartmentExistsError()));
 
@@ -88,7 +89,7 @@ class DepartmentControllerTests {
     @Test
     void shouldFailCreatingBlacklistedDepartment() throws Exception {
 
-        CreateDepartmentCommand createDepartmentCommand = new CreateDepartmentCommand(0, "");
+        val createDepartmentCommand = new CreateDepartmentCommand(0, "");
         when(createDepartmentUseCase.createDepartment(createDepartmentCommand))
                 .thenThrow(new DomainErrorException(new DepartmentBlacklistedError()));
 

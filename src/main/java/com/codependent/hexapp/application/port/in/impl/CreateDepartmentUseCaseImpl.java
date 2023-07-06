@@ -10,8 +10,6 @@ import com.codependent.hexapp.application.port.out.GetDepartmentDrivenPort;
 import lombok.val;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 public class CreateDepartmentUseCaseImpl implements CreateDepartmentUseCase {
     
@@ -26,7 +24,7 @@ public class CreateDepartmentUseCaseImpl implements CreateDepartmentUseCase {
     @Override
     public Department createDepartment(CreateDepartmentCommand command) {
         val department = new Department(command.id(), command.name());
-        Optional<Department> existingDepartment = getDepartmentDrivenPort.getByName(command.name());
+        val existingDepartment = getDepartmentDrivenPort.getByName(command.name());
         if(existingDepartment.isPresent() && existingDepartment.get().name().equalsIgnoreCase(command.name())) {
             throw new DomainErrorException(new DepartmentExistsError());
         } else {
