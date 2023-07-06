@@ -16,6 +16,11 @@ public class GetDepartmentDrivenPortImpl implements GetDepartmentDrivenPort {
     }
 
     @Override
+    public Optional<Department> get(int id) {
+        return departmentRepository.get(id);
+    }
+
+    @Override
     public Optional<Department> getByName(String name) {
         return departmentRepository.get(name);
     }

@@ -4,8 +4,9 @@ import com.codependent.hexapp.application.domain.Department;
 
 import java.util.Optional;
 
-@FunctionalInterface
+
 public interface GetDepartmentDrivenPort {
-    
+
+    Optional<Department> get(int id);
     Optional<Department> getByName(String name);
 }
