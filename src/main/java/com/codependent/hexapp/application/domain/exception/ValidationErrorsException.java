@@ -5,13 +5,13 @@ import com.codependent.hexapp.application.domain.error.ValidationErrors;
 
 public class ValidationErrorsException extends RuntimeException {
 
-    private final ValidationErrors errors;
+    private final ValidationErrors validationErrors;
 
-    public ValidationErrorsException(ValidationErrors errors) {
-        this.errors = errors;
+    public ValidationErrorsException(ValidationErrors validationErrors) {
+        this.validationErrors = validationErrors;
     }
 
-    public ValidationErrors getErrors() {
-        return errors;
+    public ValidationErrors getValidationErrors() {
+        return validationErrors;
     }
 }

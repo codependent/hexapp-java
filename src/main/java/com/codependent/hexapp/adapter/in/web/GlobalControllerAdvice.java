@@ -18,7 +18,7 @@ public class GlobalControllerAdvice {
 
     @ExceptionHandler(ValidationErrorsException.class)
     public ResponseEntity<ValidationErrors> validationException(ValidationErrorsException validationErrorsException) {
-        return ResponseEntity.badRequest().body(validationErrorsException.getErrors());
+        return ResponseEntity.badRequest().body(validationErrorsException.getValidationErrors());
     }
 
     @ExceptionHandler(DomainErrorException.class)
