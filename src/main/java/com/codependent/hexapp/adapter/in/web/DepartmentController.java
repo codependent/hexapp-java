@@ -25,9 +25,8 @@ public class DepartmentController {
 
     @PostMapping
     ResponseEntity<?> create(@RequestBody CreateDepartmentCommand command) {
-        Either<? extends ApplicationError, Department> department = departmentService.createDepartment(command);
+        Either<ApplicationError, Department> department = departmentService.createDepartment(command);
         return ResponseHandler.toResponseEntity(CREATED, department);
-        
     }
 
 }

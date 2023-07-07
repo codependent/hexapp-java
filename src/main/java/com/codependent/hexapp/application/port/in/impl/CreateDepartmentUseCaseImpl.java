@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Component
 public class CreateDepartmentUseCaseImpl implements CreateDepartmentUseCase {
-    
+
     private final CreateDepartmentDrivenPort createDepartmentDrivenPort;
     private final GetDepartmentDrivenPort getDepartmentDrivenPort;
 
@@ -24,9 +24,9 @@ public class CreateDepartmentUseCaseImpl implements CreateDepartmentUseCase {
     }
 
     @Override
-    public Either<? extends ApplicationError, Department> createDepartment(CreateDepartmentCommand command) {
+    public Either<ApplicationError, Department> createDepartment(CreateDepartmentCommand command) {
         Either<ApplicationError, Department> department = Department.create(command.id(), command.name());
-        return department.flatMap((Department dep) -> {
+        return department.flatMap(dep -> {
             Optional<Department> existingDepartment = getDepartmentDrivenPort.getByName(command.name());
             if (existingDepartment.isPresent()) {
                 return Either.left(new DepartmentExistsError());

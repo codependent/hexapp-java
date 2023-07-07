@@ -7,7 +7,7 @@ import io.vavr.control.Either;
 
 public interface CreateDepartmentUseCase {
     
-    Either<? extends ApplicationError, Department> createDepartment(CreateDepartmentCommand command);
+    Either<ApplicationError, Department> createDepartment(CreateDepartmentCommand command);
     
     
 }
