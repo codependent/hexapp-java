@@ -29,7 +29,7 @@ public class CreateDepartmentUseCaseImpl implements CreateDepartmentUseCase {
         return department.flatMap(dep -> {
             Optional<Department> existingDepartment = getDepartmentDrivenPort.getByName(command.name());
             if (existingDepartment.isPresent()) {
-                return Either.left(new DepartmentExistsError());
+                return Either.left(new DepartmentExistsError(command.name()));
             } else {
                 return createDepartmentDrivenPort.create(dep);
             }
