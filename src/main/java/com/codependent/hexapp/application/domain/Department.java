@@ -5,6 +5,7 @@ import com.codependent.hexapp.application.domain.error.EmptyField;
 import com.codependent.hexapp.application.domain.error.InvalidField;
 import com.codependent.hexapp.application.domain.error.ValidationErrors;
 import io.vavr.control.Either;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.With;
@@ -14,6 +15,7 @@ import static lombok.AccessLevel.PRIVATE;
 
 @RequiredArgsConstructor(access = PRIVATE)
 @Getter
+@EqualsAndHashCode
 public @With class Department {
 
     private final int id;

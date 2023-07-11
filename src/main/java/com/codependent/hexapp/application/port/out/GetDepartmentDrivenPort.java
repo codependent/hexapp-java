@@ -6,7 +6,11 @@ import io.vavr.control.Either;
 
 import java.util.Optional;
 
+
 public interface GetDepartmentDrivenPort {
-    
+
     Either<ApplicationError, Optional<Department>> getByName(String name);
+
+    Either<ApplicationError, Optional<Department>> get(int id);
+
 }

@@ -17,6 +17,10 @@ public class GetDepartmentDrivenPortImpl implements GetDepartmentDrivenPort {
         this.departmentRepository = departmentRepository;
     }
 
+    public Either<ApplicationError, Optional<Department>> get(int id) {
+        return departmentRepository.get(id);
+    }
+
     @Override
     public Either<ApplicationError, Optional<Department>> getByName(String name) {
         return departmentRepository.get(name);
