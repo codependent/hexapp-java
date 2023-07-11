@@ -9,5 +9,4 @@ public interface CreateDepartmentUseCase {
     
     Either<ApplicationError, Department> createDepartment(CreateDepartmentCommand command);
     
-    
 }
