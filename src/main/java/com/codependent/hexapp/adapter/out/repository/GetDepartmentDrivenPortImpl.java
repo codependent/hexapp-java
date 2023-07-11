@@ -1,7 +1,9 @@
 package com.codependent.hexapp.adapter.out.repository;
 
 import com.codependent.hexapp.application.domain.Department;
+import com.codependent.hexapp.application.domain.error.ApplicationError;
 import com.codependent.hexapp.application.port.out.GetDepartmentDrivenPort;
+import io.vavr.control.Either;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -16,7 +18,7 @@ public class GetDepartmentDrivenPortImpl implements GetDepartmentDrivenPort {
     }
 
     @Override
-    public Optional<Department> getByName(String name) {
+    public Either<ApplicationError, Optional<Department>> getByName(String name) {
         return departmentRepository.get(name);
     }
 }
