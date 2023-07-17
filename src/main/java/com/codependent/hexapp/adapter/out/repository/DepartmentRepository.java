@@ -10,6 +10,6 @@ public interface DepartmentRepository {
 
     Either<ApplicationError, Optional<Department>> get(int id);
     Either<ApplicationError, Optional<Department>> get(String name);
-
     Either<ApplicationError, Department> save(Department department);
+    
 }
