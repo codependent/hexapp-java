@@ -8,6 +8,8 @@ import com.codependent.hexapp.application.domain.exception.DomainErrorException;
 import com.codependent.hexapp.application.domain.exception.ValidationErrorsException;
 import com.codependent.hexapp.application.port.in.CreateDepartmentUseCase;
 import com.codependent.hexapp.application.port.in.dto.CreateDepartmentCommand;
+import com.codependent.hexapp.application.port.in.mapper.DepartmentMapper;
+import com.codependent.hexapp.application.port.in.mapper.DepartmentMapperImpl;
 import com.codependent.hexapp.application.port.out.CreateDepartmentDrivenPort;
 import lombok.val;
 import org.junit.jupiter.api.Test;
@@ -16,12 +18,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CreateDepartmentUseCaseImplTests {
 
+    private final DepartmentMapper departmentMapper = new DepartmentMapperImpl();
+    
     @Test
     void shouldCreateDepartment() {
 
         val getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(new DepartmentRepositoryInMemoryImpl());
         final CreateDepartmentDrivenPort createDepartmentDrivenPort = department -> department;
-        CreateDepartmentUseCase createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort);
+        CreateDepartmentUseCase createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort, departmentMapper);
 
         val department = createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(1, "name"));
 
@@ -37,7 +41,7 @@ class CreateDepartmentUseCaseImplTests {
         departmentRepositoryInMemory.save(new Department(2, "name2"));
         val getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(departmentRepositoryInMemory);
         final CreateDepartmentDrivenPort createDepartmentDrivenPort = department -> department;
-        val createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort);
+        val createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort, departmentMapper);
 
         val exception = assertThrows(DomainErrorException.class, () -> createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(2, "name2")));
         
@@ -50,7 +54,7 @@ class CreateDepartmentUseCaseImplTests {
 
         val getDepartmentDrivenPort = new GetDepartmentDrivenPortImpl(new DepartmentRepositoryInMemoryImpl());
         final CreateDepartmentDrivenPort createDepartmentDrivenPort = department -> department;
-        val createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort);
+        val createDepartmentUseCase = new CreateDepartmentUseCaseImpl(createDepartmentDrivenPort, getDepartmentDrivenPort, departmentMapper);
 
         val exception = assertThrows(ValidationErrorsException.class, () -> 
                 createDepartmentUseCase.createDepartment(new CreateDepartmentCommand(0, "")));
