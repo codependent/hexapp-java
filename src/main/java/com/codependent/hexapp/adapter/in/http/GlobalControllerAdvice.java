@@ -1,4 +1,4 @@
-package com.codependent.hexapp.adapter.in.web;
+package com.codependent.hexapp.adapter.in.http;
 
 import com.codependent.hexapp.application.domain.error.*;
 import com.codependent.hexapp.application.domain.exception.DomainErrorException;

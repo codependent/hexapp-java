@@ -1,5 +1,6 @@
-package com.codependent.hexapp.adapter.in.web;
+package com.codependent.hexapp.adapter.in.http;
 
+import com.codependent.hexapp.adapter.in.http.mapper.DepartmentRequestMapperImpl;
 import com.codependent.hexapp.application.domain.Department;
 import com.codependent.hexapp.application.domain.error.DepartmentBlacklistedError;
 import com.codependent.hexapp.application.domain.error.DepartmentExistsError;
@@ -11,6 +12,7 @@ import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestConstructor;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -23,6 +25,7 @@ import static org.springframework.test.context.TestConstructor.AutowireMode.ALL;
 
 @TestConstructor(autowireMode = ALL)
 @WebMvcTest(DepartmentController.class)
+@Import(DepartmentRequestMapperImpl.class)
 class DepartmentControllerTests {
 
     private final MockMvc mvc;
