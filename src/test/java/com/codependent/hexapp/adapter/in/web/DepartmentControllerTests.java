@@ -3,10 +3,7 @@ package com.codependent.hexapp.adapter.in.web;
 import com.codependent.hexapp.application.domain.Department;
 import com.codependent.hexapp.application.domain.error.DepartmentBlacklistedError;
 import com.codependent.hexapp.application.domain.error.DepartmentExistsError;
-import com.codependent.hexapp.application.domain.error.InvalidField;
-import com.codependent.hexapp.application.domain.error.ValidationErrors;
 import com.codependent.hexapp.application.domain.exception.DomainErrorException;
-import com.codependent.hexapp.application.domain.exception.ValidationErrorsException;
 import com.codependent.hexapp.application.port.in.CreateDepartmentUseCase;
 import com.codependent.hexapp.application.port.in.dto.CreateDepartmentCommand;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,8 +15,6 @@ import org.springframework.test.context.TestConstructor;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.when;
@@ -55,27 +50,17 @@ class DepartmentControllerTests {
 
     @Test
     void shouldFailCreatingInvalidDepartment() throws Exception {
-
-        InvalidField invalidField = new InvalidField("department", "id", "invalid");
-        InvalidField invalidField2 = new InvalidField("department", "name", "empty");
-
-        CreateDepartmentCommand createDepartmentCommand = new CreateDepartmentCommand(0, "");
-        when(createDepartmentUseCase.createDepartment(createDepartmentCommand))
-                .thenThrow(new ValidationErrorsException(new ValidationErrors(List.of(
-                        invalidField,
-                        invalidField2))));
-
         mvc.perform(MockMvcRequestBuilders.post("/departments")
-                        .content(new ObjectMapper().writeValueAsString(createDepartmentCommand))
+                        .content("{\"id\": 0, \"name\": \"\"}")
                         .contentType(APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
-                
+        
     }
 
     @Test
     void shouldFailCreatingExistingDepartment() throws Exception {
         
-        val createDepartmentCommand = new CreateDepartmentCommand(0, "");
+        val createDepartmentCommand = new CreateDepartmentCommand(1, "DEP");
         when(createDepartmentUseCase.createDepartment(createDepartmentCommand))
                 .thenThrow(new DomainErrorException(new DepartmentExistsError()));
 
@@ -89,7 +74,7 @@ class DepartmentControllerTests {
     @Test
     void shouldFailCreatingBlacklistedDepartment() throws Exception {
 
-        val createDepartmentCommand = new CreateDepartmentCommand(0, "");
+        val createDepartmentCommand = new CreateDepartmentCommand(1, "DEP");
         when(createDepartmentUseCase.createDepartment(createDepartmentCommand))
                 .thenThrow(new DomainErrorException(new DepartmentBlacklistedError()));
 

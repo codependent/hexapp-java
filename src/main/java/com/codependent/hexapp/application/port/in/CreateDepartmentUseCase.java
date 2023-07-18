@@ -7,5 +7,4 @@ public interface CreateDepartmentUseCase {
     
     Department createDepartment(CreateDepartmentCommand command);
     
-    
 }

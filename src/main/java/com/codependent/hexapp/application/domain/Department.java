@@ -7,7 +7,7 @@ import com.codependent.hexapp.application.domain.exception.ValidationErrorsExcep
 import lombok.With;
 import org.apache.commons.lang3.StringUtils;
 
-public @With record Department(int id, String name) {
+public @With record Department(Integer id, String name) {
     
     public Department {
         ValidationErrors validationErrors = new ValidationErrors();
